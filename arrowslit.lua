@@ -12,7 +12,7 @@ local arrowslit_types = {
 
 local grp = {cracky=3}
 
-for _, row in ipairs(arrowslit_types) do
+for _, row in pairs(arrowslit_types) do
 
 	minetest.register_node("castle:arrowslit_"..row[1], {
 		drawtype = "nodebox",

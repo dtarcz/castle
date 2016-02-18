@@ -119,7 +119,7 @@ minetest.register_craft({
 	output = "castle:roofslate",
 	recipe = "default:gravel",
 })
-
+--[[
 doors.register_door("castle:oak_door", {
 	description = "Oak Door",
 	inventory_image = "castle_oak_door_inv.png",
@@ -138,6 +138,16 @@ minetest.register_craft({
 		{"group:tree", "group:tree"},
 		{"group:tree", "group:tree"}
 	}
+})
+]]
+
+doors.register("door_oak", {
+		tiles = {{ name = "doors_door_oak.png", backface_culling = true }},
+		description = "Oak Door",
+		inventory_image = "doors_item_oak.png",
+		protected = true,
+		groups = { door = 1, choppy = 2, flammable = 2 },
+		material = "default:tree",
 })
 
 function default.get_ironbound_chest_formspec(pos)

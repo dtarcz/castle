@@ -8,6 +8,7 @@ minetest.register_node("castle:autocraft", {
 	groups = {choppy = 1, oddly_breakable_by_hand = 2},
 	paramtype = "light",
 	paramtype2 = "facedir",
+	sounds = default.node_sound_wood_defaults(),
 
 	on_construct = function(pos)
 		local meta = minetest.get_meta(pos)
@@ -43,7 +44,21 @@ minetest.register_node("castle:autocraft", {
 		return inv:is_empty("in") and inv:is_empty("craft")
 	end,
 
+	allow_metadata_inventory_move = function(pos, from_list, from_index, to_list, to_index, count, player)
+		if minetest.is_protected(pos, player:get_player_name()) then
+			return 0
+		end
+		return count
+	end,
+
 	allow_metadata_inventory_take = function(pos, listname, index, stack, player)
+		if minetest.is_protected(pos, player:get_player_name()) then
+			return 0
+		end
+		return stack:get_count()
+	end,
+
+	allow_metadata_inventory_put = function(pos, listname, index, stack, player)
 		if minetest.is_protected(pos, player:get_player_name()) then
 			return 0
 		end
@@ -91,7 +106,7 @@ minetest.register_abm({
 		if not inventory:room_for_item("in", result) then return end
 
 		local to_use = {}
-		for _,item in ipairs(recipe) do
+		for _,item in pairs(recipe) do
 			if item ~= nil and not item:is_empty() then
 				if to_use[item:get_name()] == nil then
 					to_use[item:get_name()] = 1

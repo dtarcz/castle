@@ -12,7 +12,7 @@ local hole_types = {
 
 local grp = {cracky=3}
 
-for _, row in ipairs(hole_types) do
+for _, row in pairs(hole_types) do
 
 	minetest.register_node("castle:hole_"..row[1], {
 		drawtype = "nodebox",

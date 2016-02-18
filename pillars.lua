@@ -8,11 +8,13 @@ local pillar_types = {
 	{"sandstone", "Sandstone", "default_sandstone", "default:sandstone"},
 	{"desertstone", "Desert Stone", "default_desert_stone", "default:desert_stone"},
 	{"dungeonstone", "Dungeon Stone", "castle_dungeon_stone", "castle:dungeon_stone"},
+	{"obsidianbrick", "Obsidian Brick", "default_obsidian_brick", "default:obsidianbrick"},
+	{"mushroomtrunk", "Mushroom Trunk", "mushroom_trunk", "ethereal:mushroom_trunk"},
 }
 
 local grp = {cracky=3}
 
-for _, row in ipairs(pillar_types) do
+for _, row in pairs(pillar_types) do
 
 	minetest.register_node("castle:pillars_"..row[1].."_bottom", {
 		drawtype = "nodebox",
